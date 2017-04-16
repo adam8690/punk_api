@@ -1,6 +1,7 @@
 var BeerList = function(url){
   this.url = url;
   this.beers = [];
+  this.beerArray = [];
 }
 
 BeerList.prototype = {
@@ -18,7 +19,7 @@ BeerList.prototype = {
   },
   populateList: function(beers){
     beers.forEach(function(beer){
-      console.log(beer.name);
+      // console.log(beer.name);
       this.addBeerElement(beer)
     }.bind(this))
   },
@@ -27,5 +28,16 @@ BeerList.prototype = {
     listItem = document.createElement('p');
     listItem.innerText = beer.name;
     list.appendChild(listItem);
+  },
+  createBeersObject: function(beers, callback){
+    beers.forEach(function(beer){
+      this.beerArray.push(beer)
+    }.bind(this))
+    callback(this.beerArray)
+  },
+  // populateDropDown: function(beers){
+  //   beers.forEach(function(beer){
+      
+  //   })
   }
 }
