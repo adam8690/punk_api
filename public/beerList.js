@@ -35,9 +35,54 @@ BeerList.prototype = {
     }.bind(this))
     callback(this.beerArray)
   },
-  // populateDropDown: function(beers){
-  //   beers.forEach(function(beer){
-      
-  //   })
+  populateDropDown: function(beers, dropDown){
+    beers.forEach(function(beer){
+      var option = document.createElement('option')
+      option.text = beer.name
+      // option.value = beer.id
+      dropDown.appendChild(option)
+    }.bind(this))
+  },
+  showBeerDetails: function(index, element){
+    element.innerHTML = ""
+    var beer = this.beerArray[index]
+    console.log(beer)
+   
+    var nameH2 = document.createElement('h2')
+    nameH2.innerText = beer.name;
+
+    var firstBrewedP = document.createElement('p');
+    firstBrewedP.innerText = "First Brewed: " + beer.first_brewed
+   
+    var tagH3 = document.createElement('h3')
+    tagH3.innerText = beer.tagline;
+   
+    var abvibuP = document.createElement('p')
+    abvibuP.innerText = "ABV: " + beer.abv + "%, IBUs: " + beer.ibu;
+
+    var descriptionP = document.createElement('p')
+    descriptionP.innerText = beer.description
+
+    var image = document.createElement('img')
+    image.src = beer.image_url
+    image.height = 200
+
+    var foodPairings = document.createElement('p')
+    foods = beer.food_pairing
+    var foodString = ""
+    foods.forEach(function(food){
+      foodString = foodString + food + ", "
+    })
+    foodPairings.innerText = "Food Pairings: " + foodString;
+    // first brewed food pairings
+
+    element.appendChild(nameH2)
+    // element.appendChild(firstBrewedP)
+    element.appendChild(tagH3)
+    element.appendChild(abvibuP)
+    element.appendChild(image)
+    element.appendChild(descriptionP)
+    element.appendChild(foodPairings)
   }
 }
+

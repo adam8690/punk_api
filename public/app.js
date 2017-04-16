@@ -19,6 +19,14 @@ var app = function(){
         console.log(beerList1.beerArray[0].name)
         console.log(beerList1.beerArray[200].name)
 
+        var dropDown = document.createElement('select')
+        navBar.appendChild(dropDown);
+        beerList1.populateDropDown(beerList1.beerArray, dropDown)
+
+        dropDown.addEventListener('change', function(value){
+          console.log(this.selectedIndex);
+          beerList1.showBeerDetails(this.selectedIndex, document.querySelector('#beers-list'));
+        })
         // or can have eventlisteners below and as long as you are not to fast in clicking it all should work.
         // therefore the callback may not be necessary.
         // callback here should be for creating lists that appear on the main screen e.g. select view. 
@@ -31,14 +39,23 @@ var app = function(){
 
 
 
-  navBar = document.querySelector('nav');
-  listButton = document.createElement('button')
+  var navBar = document.querySelector('nav');
+  var listButton = document.createElement('button')
   listButton.innerText = "List All Beers"
   navBar.appendChild(listButton)
   
   listButton.addEventListener('click', function(){
     beerList1.populateList(beerList1.beerArray)
     });
+
+  var clearButton = document.createElement('button')
+  clearButton.innerText = "Clear List"
+  navBar.appendChild(clearButton)
+  clearButton.addEventListener('click', function(){
+    var list = document.querySelector('#beers-list')
+    list.innerHTML = '';
+  })
+
 
     
 
