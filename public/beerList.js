@@ -77,7 +77,7 @@ BeerList.prototype = {
     // first brewed food pairings
 
     element.appendChild(nameH2)
-    // element.appendChild(firstBrewedP)
+    element.appendChild(firstBrewedP)
     element.appendChild(tagH3)
     element.appendChild(abvibuP)
     element.appendChild(image)
